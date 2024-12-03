@@ -98,18 +98,58 @@ function App() {
     setDisplay_pokemon((prevState) => []);
 
     let alg_1_list = pokedex;
-    const alg_2_list = pokedex;
+    let alg_2_list = pokedex;
 
     let start = performance.now();
     alg_1_list = MergeSort(alg_1_list);
     let end = performance.now();
-    const num = end - start;
-    const rounded = Number(num.toFixed(3));
+    const time = end - start;
+    let rounded = time.toFixed(3);
     setT1(rounded);
 
     start = performance.now();
-    //alg_2_list = ALGNUMBER2(alg_2_list);
-    setT2(end - start);
+    if (alg_2_list.length > 0) {
+      var temp_max = alg_2_list[0];
+      alg_2_list.forEach((p) => {
+        if (p.usage > temp_max.usage) {
+          temp_max = p;
+        }
+      });
+
+      var max = temp_max.usage.toString().length;
+      var i = 0;
+      var div = 10;
+
+      while (i < max) {
+        let list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        alg_2_list.forEach((p) => {
+          var num = Math.floor(p.usage / (10));
+          list[(num % 10)]++;
+        });
+        for (let j = 1; j < list.length; j++) {
+          list[j] = list[j] + list[(j - 1)];
+        }
+        let temp_mons = [];
+        for (let p = alg_2_list.length - 1; p >= 0; p--) {
+          var num = ((Math.floor(alg_2_list[p].usage / (10))) % 10);
+          list[num] = list[num] - 1;
+          temp_mons[list[num]] = alg_2_list[p];
+        };
+        //replacement = temp_mons;
+        //alg_1_list[0].name = temp_mons.length.toString();
+        for (let j = 0; j < temp_mons.length; j++) {
+          alg_2_list[j] = temp_mons[j];
+        }
+        i++;
+        div = div * 10;
+        //alg_1_list[0].name = list[0].toString();
+      }
+
+      alg_2_list.reverse();
+    }
+
+    end = performance.now();
+    setT2((end - start).toFixed(3));
 
     alg_1_list.forEach((p) => {
       let temp: boolean = true;
