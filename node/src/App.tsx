@@ -47,11 +47,16 @@ function merge(left, right) {
   return result;
 }
 function App() {
+  // all pokemon
   const [pokedex, setPokedex] = useState<pokemon[]>([]);
+  // pokemon being displayed
   const [display_pokemon, setDisplay_pokemon] = useState<pokemon[]>([]);
+  // type filtering
   const [type, setType] = useState<string[]>([]);
+  // time for algorithms 1 and 2
   const [t1, setT1] = useState<number>(0);
   const [t2, setT2] = useState<number>(0);
+  // list of possible types
   const type_list = [
     "Normal",
     "Fire",
@@ -73,9 +78,12 @@ function App() {
     "Fairy",
   ];
 
+  // on load
   useEffect(() => {
+    // reset the pokedex
     setPokedex((prevState) => []);
 
+    // update the pokedex with all pokemon
     const temp_pokedex: pokemon[] = [];
 
     Object.keys(pokedex_file).forEach((key) => {
@@ -92,11 +100,14 @@ function App() {
 
   // select the proper
   useEffect(() => {
+    // reset the display_pokemon
     setDisplay_pokemon((prevState) => []);
 
+    // 2 lists for each algorithm
     let alg_1_list = pokedex;
     let alg_2_list = pokedex;
 
+    // merge sort
     let start = performance.now();
     alg_1_list = MergeSort(alg_1_list);
     let end = performance.now();
@@ -104,6 +115,7 @@ function App() {
     let rounded = time.toFixed(3);
     setT1(rounded);
 
+    // radix sort
     start = performance.now();
     if (alg_2_list.length > 0) {
       var temp_max = alg_2_list[0];
@@ -144,12 +156,13 @@ function App() {
 
       alg_2_list.reverse();
     }
-
     end = performance.now();
     setT2((end - start).toFixed(3));
 
+    // update display pokemon
     alg_1_list.forEach((p) => {
       let temp: boolean = true;
+      // filter by type
       for (const t of type) {
         if (!p.types.includes(t)) {
           temp = false;
@@ -161,12 +174,15 @@ function App() {
     });
   }, [type, pokedex]);
 
+  // update type list based on checked boxes
   const handle_types = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     if (e.target.checked) {
       setType((prevState) => [...prevState, e.target.name]);
     } else {
+      // find index of type
       const index = type.indexOf(e.target.name);
-      console.log(index);
+      
+      // remove found index
       setType((prevState) => [
         ...prevState.slice(0, index),
         ...prevState.slice(index + 1),
