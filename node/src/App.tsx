@@ -16,10 +16,11 @@ function MergeSort(pokemonArray) {
     return pokemonArray;
   }
 
+  // Split array into two halves
   const mid = Math.floor(pokemonArray.length / 2);
   const left = pokemonArray.slice(0, mid);
   const right = pokemonArray.slice(mid);
-
+  // Recursively merge array ny calling the merge function
   return merge(MergeSort(left), MergeSort(right));
 }
 
@@ -27,7 +28,7 @@ function merge(left, right) {
   const result = [];
   let i = 0;
   let j = 0;
-
+  // Merges arrays in descending order
   while (i < left.length && j < right.length) {
     if (left[i].usage >= right[j].usage) {
       result.push(left[i]);
@@ -37,7 +38,7 @@ function merge(left, right) {
       j++;
     }
   }
-
+  // Adds any remaining elements into array
   while (i < left.length) {
     result.push(left[i]);
     i++;
