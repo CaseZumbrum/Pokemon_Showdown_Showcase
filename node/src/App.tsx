@@ -111,9 +111,7 @@ function App() {
     let start = performance.now();
     alg_1_list = MergeSort(alg_1_list);
     let end = performance.now();
-    const time = end - start;
-    let rounded = time.toFixed(3);
-    setT1(rounded);
+    setT1(end - start);
 
     // radix sort
     start = performance.now();
@@ -157,7 +155,7 @@ function App() {
       alg_2_list.reverse();
     }
     end = performance.now();
-    setT2((end - start).toFixed(3));
+    setT2(end - start);
 
     // update display pokemon
     alg_1_list.forEach((p) => {
@@ -181,7 +179,7 @@ function App() {
     } else {
       // find index of type
       const index = type.indexOf(e.target.name);
-      
+
       // remove found index
       setType((prevState) => [
         ...prevState.slice(0, index),
@@ -204,9 +202,9 @@ function App() {
           ))}
           <br></br>
           <div className="options__time">
-            Merge Sort Time : {t1} ms
+            Merge Sort Time : {t1.toFixed(3)} ms
             <br></br>
-            Radix Sort Time : {t2} ms
+            Radix Sort Time : {t2.toFixed(3)} ms
           </div>
         </div>
         <div className="content__pokemonlist">
