@@ -1,6 +1,6 @@
 # Pokemon Showdown Showcase
 
-By: Jack Kellen, Louis I don't know your last name, Case Zumbrum
+By: John Kellen, Louis I don't know your last name, Case Zumbrum
 
 [Active Link](http://www.casezumbrum.com/cop/index.html)
 
