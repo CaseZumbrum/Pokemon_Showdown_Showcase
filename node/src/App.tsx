@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import usage_file from "./data/usage.json";
 import { useState, useEffect } from "react";
@@ -7,9 +6,7 @@ import Pokemon from "./components/Pokemon";
 import pokemon from "./types/pokemon";
 import pokedex_file from "./data/test.json";
 import Type_button from "./components/Type_Button";
-import react from "@vitejs/plugin-react-swc";
-import { Performance } from "perf_hooks";
-import { c } from "vite/dist/node/types.d-aGj9QkWt";
+
 
 function MergeSort(pokemonArray) {
   if (pokemonArray.length <= 1) {
