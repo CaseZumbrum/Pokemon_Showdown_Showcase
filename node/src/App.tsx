@@ -191,9 +191,9 @@ function App() {
           ))}
           <br></br>
           <div className="options__time">
-            Merge Sort Time : {t1}
+            Merge Sort Time : {t1} ms
             <br></br>
-            Alg2 Time : {t2}
+            Radix Sort Time : {t2} ms
           </div>
         </div>
         <div className="content__pokemonlist">
