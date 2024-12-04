@@ -174,11 +174,12 @@ function App() {
 
   // update type list based on checked boxes
   const handle_types = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-    if (e.target.checked) {
-      setType((prevState) => [...prevState, e.target.name]);
+    const target: HTMLInputElement = e.target as HTMLInputElement;
+    if (target.checked) {
+      setType((prevState) => [...prevState, target.name]);
     } else {
       // find index of type
-      const index = type.indexOf(e.target.name);
+      const index = type.indexOf(target.name);
 
       // remove found index
       setType((prevState) => [
